@@ -1,3 +1,16 @@
+/*=============通用样式重置=================*/
+a:link,
+a:visited,
+a:hover,
+a:active{
+    text-decoration: none;
+}
+ul,li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+/*==================login中的代码====================*/
 .body_bg{
     background-color: #222D32;
 }
@@ -9,4 +22,115 @@
 }
 .mt_150{
     margin-top: 150px;
+}
+
+/*=========================左侧导航栏======================*/
+.lt_aside{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 100%;
+    background-color: #222D32;
+    z-index: 999;
+    transition:all 1s;
+}
+.lt_aside.hid{
+    left:-180px
+}
+.lt_aside .brand{
+    height: 50px;
+    font-size: 24px;
+    line-height: 50px;
+    text-align: center;
+    background-color: #367FA9;
+}
+.lt_aside a{
+    color: #fff;
+}
+
+.lt_aside .user{
+    padding-top: 30px;
+    height: 180px;
+}
+.lt_aside .user img{
+    display: block;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+.lt_aside .user p{
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.lt_aside .nav a{
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 40px;
+    border-left:3px solid transparent;
+}
+.lt_aside .nav a.current{
+    border-left:3px solid #367FA9;
+    background-color: #1D1F21;
+}
+.lt_aside .nav .child{
+    display: none;
+}
+.lt_aside .nav .child a{
+    padding-left: 60px;
+}
+.lt_aside .nav a i{
+    font-size: 14px;
+    margin-top: 1px;
+    margin-right: 6px;
+}
+/*===========main topBar================*/
+.lt_main {
+    width: 100%;
+    height: 100%;
+    padding-left: 180px;
+    padding-top:70px;
+    transition:all 1s;
+}
+.lt_main .topBar{
+    width: 100%;
+    height: 50px;
+    background-color: #3C8DBC;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-left: 180px;
+    transition:all 1s;
+}
+.lt_main.hideMenu{
+    padding-left: 0;
+}
+.lt_main .topBar.hideMenu{
+    padding-left: 0;
+}
+.lt_main .topBar a{
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: #fff;
+}
+/*================两个图表=================*/
+.lt_main .lt_content .echarts_left,
+.lt_main .lt_content .echarts_right{
+    width: 48%;
+    height: 400px;
+    background-color: skyblue;
+}
+
+/*==========模态框=============*/
+.modal .modal-body .red{
+    color:red;
 }
