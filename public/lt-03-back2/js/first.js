@@ -59,12 +59,12 @@ $(function() {
     },
     // 校验字段, 一定要先配置 input 的 name
     fields: {
-      categoryName: {
-        validators: {
-          notEmpty: {
-            message: "请输入一级分类名称"
+        categoryName: {
+          validators: {
+            notEmpty: {
+              message: "请输入一级分类名称"
+            }
           }
-        }
       }
     }
   });

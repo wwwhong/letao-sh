@@ -47,15 +47,32 @@
         <!--bootstrap 中的路径导航 面包屑导航-->
         <ol class="breadcrumb mt_20">
             <li><a href="#">管理系统</a></li>
+            <li class="active">分类管理</li>
             <li class="active">一级分类</li>
         </ol>
-        <!--
-      1. data-toggle="modal" 切换显示模态框
-      2. data-target="#myModal" 具体切换显示哪一个模态框, 通过 id 关联
-    -->
-        <!--<button data-toggle="modal" data-target="#logoutModal">Launch demo modal</button>-->
+    </div>
 
+    <!--左侧添加按钮-->
+    <div class="lt_content">
+        <!--按钮-->
+        <button class="btn btn-default mb_20" id="addBtn">添加分类</button>
 
+        <!--表格-->
+        <table class="table table-bordered table-hover mt_20">
+            <thead>
+            <tr>
+                <th width="20%">序号</th>
+                <th width="80%">一级分类名</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--挖坑-->
+            </tbody>
+        </table>
+        <!--分页-->
+        <div class="pull-right">
+            <ul id="paginator"></ul>
+        </div>
     </div>
 </div>
 <!--模态框-->
@@ -82,13 +99,50 @@
     </div>
 </div>
 
+<!--添加按钮 添加模态框-->
+<div class="modal fade" id="addModal" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <form id="form">
+                <!--头部-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h4 class="modal-title" id="addModalLabel">添加分类</h4>
+                </div>
+                <!--中部-->
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" name="categoryName" class="form-control" placeholder="请输入一级分类">
+                    </div>
+                </div>
+                <!--底部-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">添加</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script src="./lib/jquery/jquery.min.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+<script src="./lib/artTemplate/template-web.js"></script>
+<script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
 <script src="./lib/nprogress/nprogress.js"></script>
 <script src="./lib/echarts/echarts.min.js"></script>
 <script src="js/comment.js"></script>
 <script src="./js/isLogin.js"></script>
-<script src="js/product.js"></script>
+<script src="js/first.js"></script>
+
+<script type="text/html" id="firstTpl">
+ {{each rows v i}}
+    <tr>
+        <td>{{i+1+(page-1)*size}}</td>
+        <td>{{v.categoryName}}</td>
+    </tr>
+ {{/each}}
+</script>
 </body>
 </html>

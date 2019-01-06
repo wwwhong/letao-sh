@@ -141,3 +141,11 @@ ul,li{
     text-align: center;
     vertical-align: middle;
 }
+/*============first ============*/
+.lt_main .lt_content{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.mt_20{
+    margin-top: 20px;
+}
