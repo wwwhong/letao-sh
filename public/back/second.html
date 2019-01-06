@@ -47,16 +47,36 @@
         <!--bootstrap 中的路径导航 面包屑导航-->
         <ol class="breadcrumb mt_20">
             <li><a href="#">管理系统</a></li>
+            <li class="active">分类管理</li>
             <li class="active">二级分类</li>
         </ol>
-        <!--
-      1. data-toggle="modal" 切换显示模态框
-      2. data-target="#myModal" 具体切换显示哪一个模态框, 通过 id 关联
-    -->
-        <!--<button data-toggle="modal" data-target="#logoutModal">Launch demo modal</button>-->
-
-
     </div>
+
+    <!--下部-->
+    <div class="lt_content">
+        <!--按钮-->
+        <button class="btn btn-default" id="addBtn">添加分类</button>
+        <!--表格-->
+        <table class="table table-bordered mt_20">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>一级分类名称</th>
+                <th>二级分类名称</th>
+                <th>二级分类LOGO</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--挖坑-->
+            </tbody>
+        </table>
+        <!--分页-->
+        <div class="pull-right">
+            <ul id="paginator"></ul>
+        </div>
+    </div>
+
+
 </div>
 <!--模态框-->
 
@@ -82,15 +102,92 @@
     </div>
 </div>
 
+<!--添加分类 模态框-->
+<div class="modal fade" id="addModal" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <form id="form">
+                <!--头部-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h4 class="modal-title" id="addModalLabel">添加分类</h4>
+                </div>
+                <!--中部-->
+                <div class="modal-body">
+                    <!--下拉菜单-->
+                    <div class="form-group">
+                        <!-- 下拉菜单 -->
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span class="dropdownText">请选择一级分类名称 </span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <!--下拉菜单挖坑-->
+                            </ul>
+                        </div>
+                        <!--这里放一个隐藏域 input 用来存储 选择的一级分类名称 传给后台-->
+                        <input type="hidden" name="categoryId" id="categoryId">
+                        <!--品牌 的隐藏域-->
+                        <input type="hidden" name="hot" value="1">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="brandName" class="form-control" placeholder="请输入二级分类">
+                    </div>
+                    <!--文件按钮-->
+                    <div class="form-group">
+                        <label class="btn btn-default" for="fileupload">上传文件</label>
+                        <!-- name     用于后台接收图片  data-url 指定后台接口地址-->
+                        <input id="fileupload" type="file" name="pic1" data-url="/category/addSecondCategoryPic" style="display:none">
+                    </div>
+                    <!--图片组-->
+                    <div class="form-group"  id="imgBox">
+                        <img src="./images/none.png" alt="" style="width:100px">
+                        <!--下面的input是用来存放图片地址的隐藏域 以便传给后台-->
+                        <input type="hidden" name="brandLogo">
+                    </div>
+                </div>
+                <!--底部-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">添加</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script src="./lib/jquery/jquery.min.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="./lib/jquery-fileupload/jquery.ui.widget.js"></script>
+<script src="./lib/jquery-fileupload/jquery.fileupload.js"></script>
 <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+<!--引入渲染模板-->
 <script src="./lib/artTemplate/template-web.js"></script>
 <script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
 <script src="./lib/nprogress/nprogress.js"></script>
 <script src="./lib/echarts/echarts.min.js"></script>
 <script src="js/comment.js"></script>
 <script src="./js/isLogin.js"></script>
-<script src="js/product.js"></script>
+<script src="js/second.js"></script>
+<!--2.准备模板-->
+<script type="text/html" id="secondTpl">
+ {{each rows v i}}
+    <tr>
+        <td>{{i+1+(page-1)*size}}</td>
+        <td>{{v.categoryName}}</td>
+        <td>{{v.brandName}}</td>
+        <td>
+            <img height="50px" src="{{v.brandLogo}}" alt="">
+        </td>
+    </tr>
+ {{/each}}
+</script>
+
+<script type="text/html" id="dropDownTpl">
+{{each rows v i}}
+    <li><a href="#" data-id="{{v.id}}">{{v.categoryName}}</a></li>
+{{/each}}
+</script>
 </body>
 </html>
